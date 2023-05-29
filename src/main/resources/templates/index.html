@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="main_layout.html">
+
+    <div layout:fragment="siteContent">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>SURNAME</th>
+                <th>EXAM</th>
+                <th>MARK</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stud: ${students}" th:style="${stud.exam < 50?'color: red':' color:black'}">
+                <td th:text="${stud.id}"></td>
+                <td th:text="${stud.name}"></td>
+                <td th:text="${stud.surname}"></td>
+                <td th:text="${stud.exam}"></td>
+                <td>
+                    <span th:if="${stud.exam >= 90}">A</span>
+                    <span th:if="${stud.exam >= 75 && stud.exam <= 89}">B</span>
+                    <span th:if="${stud.exam >= 60 && stud.exam <= 74}">C</span>
+                    <span th:if="${stud.exam >= 50 && stud.exam <= 59}">D</span>
+                    <span th:if="${stud.exam < 50}">F</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</html>
